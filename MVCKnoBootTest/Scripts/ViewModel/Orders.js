@@ -52,7 +52,7 @@ var indexVM = {
         //Ajax Call Get All order
         $.ajax({
             type: "GET",
-            url: 'api/OrderApi/',
+            url: 'api/Orders/',
             data: { pageIndex: pageSelected },
             contentType: "application/json; charset=utf-8",
             dataType: "json",

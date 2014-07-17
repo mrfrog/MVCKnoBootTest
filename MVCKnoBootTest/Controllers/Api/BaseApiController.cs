@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace MVCKnoBootTest.Controllers
+namespace MVCKnoBootTest.Controllers.Api
 {
     public class BaseApiController : ApiController
     {

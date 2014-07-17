@@ -9,10 +9,16 @@ namespace MVCKnoBootTest.Controllers.Api
 {
     public class OrdersController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        // GET api/orderapi
+        public Wcf.Interface.Order.GetOrderOutput GetListOrder(string pageIndex)
         {
-            return new string[] { "value1", "value2" };
+            Wcf.Interface.Order.GetOrderInput input = new Wcf.Interface.Order.GetOrderInput();
+            input.CurrentUserId = 1;
+            input.CompanyId = "Guess";
+            input.LanguageId = "en";
+            input.PageIndex = Convert.ToInt32(pageIndex);
+            Wcf.Interface.Order.GetOrderOutput list = BaseApiController.CreateChannel_Order().GetOrder(input);
+            return list;
         }
 
         // GET api/<controller>/5

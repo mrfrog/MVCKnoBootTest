@@ -129,10 +129,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\OrdersController.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Mvc\OrdersController.cs" />
-    <Compile Include="Controllers\OrderApiController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,7 +226,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\ViewModel\Order.js" />
+    <Content Include="Scripts\ViewModel\Orders.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Service References\ServiceOrder\Order.disco" />
     <Content Include="Service References\ServiceOrder\configuration91.svcinfo" />
@@ -261,7 +259,7 @@
     <None Include="Service References\ServiceOrder\Order3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
