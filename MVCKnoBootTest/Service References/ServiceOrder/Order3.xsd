@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wcf.Interface.Order" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wcf.Interface.Order" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Wcf.IISHost/Order.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Wcf.Interface" />
+  <xs:complexType name="GetOrderInput">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Wcf.Interface" base="q1:BaseInputPaged">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IssueDateFrom" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IssueDateTo" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OrderStatusId" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetOrderInput" nillable="true" type="tns:GetOrderInput" />
+  <xs:complexType name="GetOrderOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Wcf.Interface" base="q2:BaseOutputPagedOfOrderL6mmv3jF">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetOrderOutput" nillable="true" type="tns:GetOrderOutput" />
+  <xs:complexType name="ArrayOfOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="tns:Order" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrder" nillable="true" type="tns:ArrayOfOrder" />
+  <xs:complexType name="Order">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncotermCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncotermDs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncotermLocationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPartialShipmentAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IssueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OpenQuantity" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderStatusId" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderYear" type="xs:int" />
+      <xs:element minOccurs="0" name="OrganizationId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentTenorDaysCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentTenorStartDateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlantId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeasonDs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeasonId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipmentMethodCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipmentMethodDs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupplierId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Order" nillable="true" type="tns:Order" />
+</xs:schema>

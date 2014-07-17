@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Scm_DevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Scm_DevModelStoreContainer" />
+        <Function Name="LineSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Organization">
+          <Parameter Name="CurrentUserId" Type="int" Mode="In" />
+          <Parameter Name="CompanyId" Type="nvarchar" Mode="In" />
+          <Parameter Name="LanguageId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PurchaseOrderSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Purchase">
+          <Parameter Name="CurrentUserId" Type="int" Mode="In" />
+          <Parameter Name="CompanyId" Type="nvarchar" Mode="In" />
+          <Parameter Name="LanguageId" Type="nvarchar" Mode="In" />
+          <Parameter Name="IssueDateFrom" Type="date" Mode="In" />
+          <Parameter Name="IssueDateTo" Type="date" Mode="In" />
+          <Parameter Name="OrderStatusId" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Scm_DevModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Scm_Entities" p1:LazyLoadingEnabled="true" >
+          <FunctionImport Name="PurchaseOrderSelect" ReturnType="Collection(Scm_DevModel.PurchaseOrderSelect_Result)">
+            <Parameter Name="CurrentUserId" Mode="In" Type="Int32" />
+            <Parameter Name="CompanyId" Mode="In" Type="String" />
+            <Parameter Name="LanguageId" Mode="In" Type="String" />
+            <Parameter Name="IssueDateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="IssueDateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="OrderStatusId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LineSelect" ReturnType="Collection(Scm_DevModel.LineSelect_Result)">
+            <Parameter Name="CurrentUserId" Mode="In" Type="Int32" />
+            <Parameter Name="CompanyId" Mode="In" Type="String" />
+            <Parameter Name="LanguageId" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PurchaseOrderSelect_Result">
+          <Property Type="String" Name="CompanyId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="OrderId" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="OrderYear" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatusId" Nullable="false" />
+          <Property Type="String" Name="SupplierId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="PlantId" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="IssueDate" Nullable="false" />
+          <Property Type="String" Name="SeasonId" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="SeasonDs" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="OrganizationId" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="OrderNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CurrencyId" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="PaymentTenorDaysCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PaymentTenorStartDateCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IncotermCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="IncotermDs" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IncotermLocationCode" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="IsPartialShipmentAllowed" Nullable="false" />
+          <Property Type="String" Name="ShipmentMethodCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ShipmentMethodDs" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="OpenQuantity" Nullable="true" />
+          <Property Type="String" Name="LineId" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="LineSelect_Result">
+          <Property Type="String" Name="CompanyId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="LineId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="LineDs" Nullable="false" MaxLength="200" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Scm_DevModelStoreContainer" CdmEntityContainer="Scm_Entities" >
+          <FunctionImportMapping FunctionImportName="PurchaseOrderSelect" FunctionName="Scm_DevModel.Store.PurchaseOrderSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Scm_DevModel.PurchaseOrderSelect_Result">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderYear" ColumnName="OrderYear" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="SeasonDs" ColumnName="SeasonDs" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="PaymentTenorDaysCode" ColumnName="PaymentTenorDaysCode" />
+                <ScalarProperty Name="PaymentTenorStartDateCode" ColumnName="PaymentTenorStartDateCode" />
+                <ScalarProperty Name="IncotermCode" ColumnName="IncotermCode" />
+                <ScalarProperty Name="IncotermDs" ColumnName="IncotermDs" />
+                <ScalarProperty Name="IncotermLocationCode" ColumnName="IncotermLocationCode" />
+                <ScalarProperty Name="IsPartialShipmentAllowed" ColumnName="IsPartialShipmentAllowed" />
+                <ScalarProperty Name="ShipmentMethodCode" ColumnName="ShipmentMethodCode" />
+                <ScalarProperty Name="ShipmentMethodDs" ColumnName="ShipmentMethodDs" />
+                <ScalarProperty Name="OpenQuantity" ColumnName="OpenQuantity" />
+                <ScalarProperty Name="LineId" ColumnName="LineId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LineSelect" FunctionName="Scm_DevModel.Store.LineSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Scm_DevModel.LineSelect_Result">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="LineId" ColumnName="LineId" />
+                <ScalarProperty Name="LineDs" ColumnName="LineDs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

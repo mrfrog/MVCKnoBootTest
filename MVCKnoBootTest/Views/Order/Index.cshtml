@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+@section Scripts {
+ @Scripts.Render("~/Scripts/jquery.simplePagination.js")
+ @Scripts.Render("~/Scripts/ViewModel/Order.js")
+ 
+}
+<table class="table">
+    <tr>
+        <th>Company</th>
+        <th>OrderId</th>
+    </tr>
+    <tbody data-bind="foreach: Items">
+        <tr>
+            <td data-bind="text: CompanyId"></td>
+            <td data-bind="text: OrderId"></td>
+        </tr>
+    </tbody>
+ <tr id="paginationHolder"></tr>
+</table>
+PageIndex: <span data-bind="text: PageIndex"></span>
+PageSize: <span data-bind="text: PageSize"></span>
+TotalResults: <span data-bind="text: TotalResults"></span>
+TotalPages: <span data-bind="text: TotalPages"></span>

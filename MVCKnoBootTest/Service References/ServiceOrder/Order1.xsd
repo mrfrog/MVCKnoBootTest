@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wcf.Interface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wcf.Interface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Wcf.IISHost/Order.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Wcf.Interface.Order" />
+  <xs:complexType name="BaseInputPaged">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseInput">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PageIndex" type="xs:int" />
+          <xs:element minOccurs="0" name="PageSize" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseInputPaged" nillable="true" type="tns:BaseInputPaged" />
+  <xs:complexType name="BaseInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrentUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="LanguageId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseInput" nillable="true" type="tns:BaseInput" />
+  <xs:complexType name="BaseOutputPagedOfOrderL6mmv3jF">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="BaseOutputPagedOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Wcf.Interface" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Order" Namespace="http://schemas.datacontract.org/2004/07/Wcf.Interface.Order" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseOutput">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Wcf.Interface.Order" minOccurs="0" name="Items" nillable="true" type="q1:ArrayOfOrder" />
+          <xs:element minOccurs="0" name="PageIndex" type="xs:int" />
+          <xs:element minOccurs="0" name="PageSize" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
+          <xs:element minOccurs="0" name="TotalResults" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseOutputPagedOfOrderL6mmv3jF" nillable="true" type="tns:BaseOutputPagedOfOrderL6mmv3jF" />
+  <xs:complexType name="BaseOutput">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="BaseOutput" nillable="true" type="tns:BaseOutput" />
+</xs:schema>
