@@ -5,11 +5,12 @@
 
 <h2>Index</h2>
 
+@* questa è una prova git *@
 
 @section Scripts {
- @Scripts.Render("~/Scripts/jquery.simplePagination.js")
- @Scripts.Render("~/Scripts/ViewModel/Order.js")
- 
+    @Scripts.Render("~/Scripts/jquery.simplePagination.js")
+    @Scripts.Render("~/Scripts/ViewModel/Order.js")
+
 }
 <table class="table">
     <tr>
@@ -22,7 +23,7 @@
             <td data-bind="text: OrderId"></td>
         </tr>
     </tbody>
- <tr id="paginationHolder"></tr>
+    <tr id="paginationHolder"></tr>
 </table>
 PageIndex: <span data-bind="text: PageIndex"></span>
 PageSize: <span data-bind="text: PageSize"></span>
