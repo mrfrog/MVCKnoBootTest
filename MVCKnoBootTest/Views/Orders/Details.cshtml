@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    function Order(data) {
+
+        this.CompanyId = data.CompanyId
+        this.OrderId = data.OrderId;
+        this.OrderYear = data.OrderYear;
+        this.OrderStatusId = data.OrderStatusId;
+        this.IssueDate = data.IssueDate;
+        this.IsPartialShipmentAllowed = data.IsPartialShipmentAllowed;
+
+        //{"CompanyId":"Guess","OrderId":"101","OrderYear":0,"OrderStatusId":0,"SupplierId":null,"PlantId":null,"IssueDate":"0001-01-01T00:00:00",
+        //"LineId":null,"SeasonId":null,"SeasonDs":null,"OrganizationId":null,"OrderNumber":null,"CurrencyId":null,"PaymentTenorDaysCode":null,
+        //"PaymentTenorStartDateCode":null,"IncotermCode":null,"IncotermDs":null,"IncotermLocationCode":null,"IsPartialShipmentAllowed":false,
+        //"ShipmentMethodCode":null,"ShipmentMethodDs":null,"OpenQuantity":null}
+    }
+
+    function OrderDetailViewModel() {
+        // Dati
+        var self = this;
+        self.detail = ko.observableArray();
+
+        // Caricamento dati dalla Web Api e mapping con l'oggetto Order
+        //http://localhost/MVCKnoBootTest/api/orders/101
+        self.url = "http://localhost/MVCKnoBootTest/" + "api/orders/";
+
+        $.ajax({
+            type: "GET",
+            url: self.url,
+            data: { id: "@ViewBag.Id" },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                //Put the response in ObservableArray
+                self.detail(data);
+            },
+            error: function (err) {
+                alert(err.status + " : " + err.statusText);
+            }
+        });
+
+    }
+
+</script>
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>CompanyId</th>
+        <th>OrderId</th>
+        <th>OrderYear</th>
+        <th>OrderStatusId</th>
+        <th>IssueDate</th>
+        <th>IsPartialShipmentAllowed</th>
+        <th>Command</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td data-bind="text: detail().CompanyId"></td>
+            <td data-bind="text: detail().OrderId"></td>
+            <td data-bind="text: detail().OrderYear"></td>
+            <td data-bind="text: detail().OrderStatusId"></td>
+            <td data-bind="text: detail().IssueDate"></td>
+            <td data-bind="text: detail().IsPartialShipmentAllowed"></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = ViewBag.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = ViewBag.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = ViewBag.Id })
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    ko.applyBindings(new OrderDetailViewModel());
+</script>

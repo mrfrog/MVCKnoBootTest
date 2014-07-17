@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Url = "'" + Url.Action("Details") + "/'";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +18,12 @@
     <tbody data-bind="foreach: Items">
         <tr>
             <td data-bind="text: CompanyId"></td>
-            <td data-bind="text: OrderId"></td>
+            <td>
+                <a data-bind="text: OrderId, attr: { href: @ViewBag.Url    + OrderId, title: OrderId }"></a>
+            </td>
+          @*  <td>
+                <a data-bind="attr: { href: $root.doSomething(@ViewBag.Url    ,$data.OrderId) }, text: $root.doSomething(@ViewBag.Url    ,$data.OrderId)"></a>
+            </td>*@
         </tr>
     </tbody>
     <tr id="paginationHolder"></tr>

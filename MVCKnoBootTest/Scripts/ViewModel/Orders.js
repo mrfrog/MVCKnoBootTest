@@ -7,34 +7,40 @@ jQuery(document).ready(function () {
 
 
 var indexVM = {
+
+    //doSomething: function(url, val) {
+    //    return url + val;
+    //},
+
+
     Items: ko.observableArray([]),
     PageIndex: ko.observable(),
     PageSize: ko.observable(),
     TotalResults: ko.observable(),
     TotalPages: ko.observable(),
 
-//    paginated : ko.computed(function() {
-//        var first = PageIndex * PageSize;
-//        return Items.slice(first, first + PageSize);
-//    }),
+    //    paginated : ko.computed(function() {
+    //        var first = PageIndex * PageSize;
+    //        return Items.slice(first, first + PageSize);
+    //    }),
 
-//    hasPrevious : ko.computed(function() {
-//        return PageIndex !== 0;
-//    }),
+    //    hasPrevious : ko.computed(function() {
+    //        return PageIndex !== 0;
+    //    }),
 
-//    hasNext : ko.computed(function() {
-//        return PageIndex !== TotalPages;
-//}),
-//    next : function() {
-//        if(PageSize < TotalPages) {
-//            PageIndex = PageIndex +1;
-//    }
-//},
+    //    hasNext : ko.computed(function() {
+    //        return PageIndex !== TotalPages;
+    //}),
+    //    next : function() {
+    //        if(PageSize < TotalPages) {
+    //            PageIndex = PageIndex +1;
+    //    }
+    //},
 	
-//previous: function() {
-//    if(PageIndex != 0) {
-//        PageIndex = PageIndex -1;
-//    }
+    //previous: function() {
+    //    if(PageIndex != 0) {
+    //        PageIndex = PageIndex -1;
+    //    }
     //},
     // Lets create pagination for this data
     createPagination: function () {
