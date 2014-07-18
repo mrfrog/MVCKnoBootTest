@@ -14,12 +14,16 @@
     <tr>
         <th>Company</th>
         <th>OrderId</th>
+        <th>Action</th>
     </tr>
-    <tbody data-bind="foreach: Items">
+    <tbody data-bind="foreach: items">
         <tr>
             <td data-bind="text: CompanyId"></td>
             <td>
                 <a data-bind="text: OrderId, attr: { href: @ViewBag.Url    + OrderId, title: OrderId }"></a>
+            </td>
+            <td>
+                <a class="btn btn-link" data-bind="click: ShowOrder">Show</a>
             </td>
           @*  <td>
                 <a data-bind="attr: { href: $root.doSomething(@ViewBag.Url    ,$data.OrderId) }, text: $root.doSomething(@ViewBag.Url    ,$data.OrderId)"></a>

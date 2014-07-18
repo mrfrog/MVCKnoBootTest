@@ -1,10 +1,40 @@
-﻿var pageSelected = 0;
-jQuery(document).ready(function () {
-    ko.applyBindings(indexVM);
-    indexVM.loadOrders(pageSelected);
-    indexVM.createPagination();
+﻿var OrderListItem = function (CompanyId, OrderId) {
+    var self = this;
+
+    self.CompanyId = ko.observable(CompanyId);
+    self.OrderId = ko.observable(OrderId);
+};
+
+var OrderListVM = function () {
+    var self = this;
+
+    self.items = ko.observableArray([]);
+
+    $.getJSON('api/orders/?pageIndex=0', function (data) {
+        var mappedOrderListItem = $.map(data.Items, function (item) {
+            return new OrderListItem(item.CompanyId, item.OrderId);
+        });
+        self.items(mappedOrderListItem);
+    });
+};
+
+self.ShowOrder = function (order) {
+    window.location.href = 'orders/Details/' + order.OrderId();
+};
+
+$(document).ready(function () {
+    var x = new OrderListVM();
+
+    ko.applyBindings(x);
 });
 
+var pageSelected = 0;
+
+//jQuery(document).ready(function () {
+//    ko.applyBindings(indexVM);
+//    indexVM.loadOrders(pageSelected);
+//    indexVM.createPagination();
+//});
 
 var indexVM = {
 
@@ -97,4 +127,3 @@ function TotalPages(data) {
 function Items(data) {
     this.Items = ko.observable(data);
 }
-
