@@ -17,12 +17,14 @@ namespace Wcf.IISHost
 
             var output = new Interface.Order.GetOrderOutput();
             output.PageIndex = 1;
-            output.PageSize = 2;
-            output.TotalPages = 3;
-            output.TotalResults = 100;
+            output.PageSize = 5;
+            output.TotalPages = 4;
+            output.TotalResults = 20;
             output.Items = new List<Interface.Order.Order>();
             Interface.Order.Order o ;
-            for (int i = 0; i < 20; i++)
+
+            int limit = output.PageIndex == 0 ? 1 : output.PageIndex;
+            for (int i = output.PageIndex; i <= limit * output.PageSize; i++)
             {
                 o = new Interface.Order.Order();
                 o.CompanyId = "Guess";
